@@ -41,7 +41,7 @@ Fazer trabalhos escolares - Atividades
 [Enter]
 
 ### Saída
-(![Alt text](ativd.png))
+![Alt text](ativd.png)
 
 ## Referências ✅
 
