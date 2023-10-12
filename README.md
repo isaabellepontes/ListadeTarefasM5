@@ -41,7 +41,7 @@ Fazer trabalhos escolares - Atividades
 [Enter]
 
 ### Saída
-![Alt text](ativd.png)
+![Exemplo de como pode ficar a sua Lista de Tarefas ]("C:\Users\isaap\Downloads\ativd.png")
 
 ## Referências ✅
 
