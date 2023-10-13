@@ -3,6 +3,7 @@ import Todo from './components/todo'
 import TodoForm from './components/TodoForm'
 import './App.css'
 import Search from './components/search'
+import EditTodo from './components/EditTodo'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
     ]);
 
     const [search, setSearch] = useState('')
+    const [editingTodo, setEditingTodo] = useState(null);
 
     const addTodo = (text, categoria) => {
             const newTodos = [
@@ -59,18 +61,41 @@ function App() {
         newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo)
         setTodos(newTodos);
     }
+    const editTodo = (id, newText) => {
+        const updatedTodos = [...todos];
+        const todoToEdit = updatedTodos.find((todo) => todo.id === id);
+        if (todoToEdit) {
+            todoToEdit.text = newText;
+            setTodos(updatedTodos);
+            setEditingTodo(null);
+        }
+    }
+    const cancelEdit = () => {
+        setEditingTodo(null);
+    }
+
     return (
         <div className='app'>
         <h1> Lista de Tarefas </h1>
         <Search search={search} setSearch={setSearch} />
         <TodoForm addTodo={addTodo}/>
         <div className='Lista de Tarefas'>
-            {todos.filter((todo) => todo.text.toLocaleLowerCase().includes(search.toLocaleLowerCase())).map((todo) => (
-                <Todo key={todo.id}  todo={todo} removeTodo={removeTodo} completeTodo={completeTodo} />
+        {todos
+            .filter((todo) => todo.text.toLowerCase().includes(search.toLowerCase()))
+            .map((todo) =>
+            editingTodo && editingTodo.id === todo.id ? (
+                <EditTodo
+                key={todo.id}
+                todo={todo}
+                editTodo={editTodo}
+                cancelEdit={cancelEdit}
+            />
+            ) : (
+                <Todo key={todo.id}  todo={todo} removeTodo={removeTodo} completeTodo={completeTodo} setEditingTodo={setEditingTodo} />
             ))}
         </div>
     </div>
-)
+);
 }
 
 export default App
