@@ -28,4 +28,19 @@ function App() {
             isCompleted: false,
         },
     ]);
+
+    const [search, setSearch] = useState('')
+
+    const addTodo = (text, categoria) => {
+            const newTodos = [
+                ...todos, 
+                {
+                id: Math.floor(Math.random() * 10000),
+                text,
+                categoria,
+                isCompleted: false,
+                },
+            ];
+        setTodos(newTodos);
+    };
 }
