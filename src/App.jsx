@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Todo from './components/todo'
+import TodoForm from './components/TodoForm'
 
 
 function App() {
@@ -44,4 +45,16 @@ function App() {
             ];
         setTodos(newTodos);
     };
+    
+    const removeTodo = (id) => {
+        const newTodos = [...todos]
+        const filteredTodos = newTodos.filter((todo) => todo.id !== id ? todo : null);
+        setTodos(filteredTodos);
+    }
+
+    const completeTodo = (id) => {
+        const newTodos = [...todos]
+        newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo)
+        setTodos(newTodos);
+    }
 }
